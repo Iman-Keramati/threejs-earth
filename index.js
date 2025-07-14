@@ -4,7 +4,6 @@ import getSun from "./src/planets/Sun.js";
 import getStarfield from "./src/getStarfield.js";
 import { OrbitControls } from "jsm/controls/OrbitControls.js";
 import ToolbarManager from "./src/helper/toolbarManager.js";
-import getMoon from "./src/planets/Moon.js";
 
 const h = window.innerHeight;
 const w = window.innerWidth;
@@ -27,15 +26,12 @@ camera.position.z = 20;
 const scene = new THREE.Scene();
 
 // Earth
-const { group: earthGroup, earthMesh } = getEarth();
+const { group: earthGroup, earthMesh, moonMesh } = getEarth();
 scene.add(earthGroup);
 
 // Sun
 const { sunGroup, glow } = getSun();
 scene.add(sunGroup);
-
-// Moon
-const moonMesh = getMoon();
 
 // Stars
 const stars = getStarfield({ numStars: 2000 });

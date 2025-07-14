@@ -65,5 +65,6 @@ export default function getEarth() {
     lightsMesh,
     cloudsMesh,
     glowMesh,
+    moonMesh,
   };
 }
