@@ -4,6 +4,7 @@ import getSun from "./src/planets/Sun.js";
 import getStarfield from "./src/getStarfield.js";
 import { OrbitControls } from "jsm/controls/OrbitControls.js";
 import ToolbarManager from "./src/helper/toolbarManager.js";
+import getMoon from "./src/planets/Moon.js";
 
 const h = window.innerHeight;
 const w = window.innerWidth;
@@ -26,18 +27,15 @@ camera.position.z = 20;
 const scene = new THREE.Scene();
 
 // Earth
-const {
-  group: earthGroup,
-  earthMesh,
-  lightsMesh,
-  cloudsMesh,
-  glowMesh,
-} = getEarth();
+const { group: earthGroup, earthMesh } = getEarth();
 scene.add(earthGroup);
 
 // Sun
 const { sunGroup, glow } = getSun();
 scene.add(sunGroup);
+
+// Moon
+const moonMesh = getMoon();
 
 // Stars
 const stars = getStarfield({ numStars: 2000 });
@@ -54,22 +52,22 @@ scene.add(sunLight);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // Toolbar
-
 const toolbar = new ToolbarManager(camera, renderer.domElement);
 
 toolbar._showToolbar("Solar System");
-toolbar.registerObject(sunGroup.children[0], "☀️ This is the Sun, baby.");
-toolbar.registerObject(earthMesh, "🌍 Earth: home of horniness and oxygen.");
+toolbar.registerObject(
+  sunGroup.children[0],
+  "☀️ The Sun: Center of the solar system."
+);
+toolbar.registerObject(earthMesh, "🌍 Earth: Our home planet.");
+toolbar.registerObject(moonMesh, "🌑 The Moon: Earth's satellite.");
 
 function animate() {
   requestAnimationFrame(animate);
   stars.rotation.y -= 0.0002;
 
   // Rotate Earth on its axis
-  earthMesh.rotation.y += 0.002;
-  lightsMesh.rotation.y += 0.002;
-  cloudsMesh.rotation.y += 0.0023;
-  glowMesh.rotation.y += 0.002;
+  earthGroup.rotation.y += 0.01;
 
   // Animate Earth orbiting around the Sun
   orbitAngle += 0.005;

@@ -32,6 +32,6 @@ export default function getSunGlow(radius = 3.2) {
     transparent: true,
   });
 
-  const glowGeo = new THREE.IcosahedronGeometry(4, 10);
+  const glowGeo = new THREE.IcosahedronGeometry(5.25, 10);
   return new THREE.Mesh(glowGeo, glowMat);
 }

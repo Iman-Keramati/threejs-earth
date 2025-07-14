@@ -1,12 +1,17 @@
 import * as THREE from "three";
 import { getFresnelMat } from "../getFresnelMat.js";
+import getMoon from "./Moon.js";
 
 const loader = new THREE.TextureLoader();
+let orbitAngle = 0;
+const orbitRadius = 4;
 
 export default function getEarth() {
+  const moonMesh = getMoon();
+
   const isMobile = window.innerWidth < 768;
   const detail = isMobile ? 5 : 12;
-  const geometry = new THREE.IcosahedronGeometry(1, detail);
+  const geometry = new THREE.IcosahedronGeometry(2, detail);
 
   const earthGroup = new THREE.Group();
   earthGroup.rotation.z = (-23.4 * Math.PI) / 180;
@@ -43,6 +48,16 @@ export default function getEarth() {
   const glowMesh = new THREE.Mesh(geometry, fresnelMat);
   glowMesh.scale.setScalar(1.01);
   earthGroup.add(glowMesh);
+  earthGroup.add(moonMesh);
+
+  function animate() {
+    requestAnimationFrame(animate);
+    orbitAngle += 0.035;
+    moonMesh.position.x = Math.cos(orbitAngle) * orbitRadius;
+    moonMesh.position.z = Math.sin(orbitAngle) * orbitRadius;
+  }
+
+  animate();
 
   return {
     group: earthGroup,

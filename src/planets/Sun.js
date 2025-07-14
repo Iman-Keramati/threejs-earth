@@ -10,7 +10,7 @@ export default function getSun() {
   const isMobile = window.innerWidth < 768;
   const detail = isMobile ? 4 : 10;
 
-  const sunGeo = new THREE.IcosahedronGeometry(3, detail);
+  const sunGeo = new THREE.IcosahedronGeometry(4, detail);
 
   const sunMesh = new THREE.Mesh(sunGeo, sunMat);
   sunMesh.position.set(0, 0, 0);
