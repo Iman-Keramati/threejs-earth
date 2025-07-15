@@ -7,6 +7,7 @@ export default function getMoon() {
   const moonSerface = new THREE.MeshBasicMaterial({ map: texture });
 
   const moonMesh = new THREE.Mesh(geo, moonSerface);
+  moonMesh.castShadow = true;
   moonMesh.position.set(5, 0, 0);
   return moonMesh;
 }

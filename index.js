@@ -13,6 +13,8 @@ const orbitRadius = 10;
 //Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(w, h);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
 // Camera
 const fov = 75;
@@ -41,6 +43,7 @@ scene.add(stars);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 const sunLight = new THREE.DirectionalLight(0xffffff, 2.0);
+sunLight.castShadow = true;
 sunLight.position.set(-100, 10, 2);
 scene.add(sunLight);
 

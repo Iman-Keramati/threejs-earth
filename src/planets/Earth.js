@@ -23,6 +23,7 @@ export default function getEarth() {
     bumpScale: 0.04,
   });
   const earthMesh = new THREE.Mesh(geometry, material);
+  earthMesh.receiveShadow = true;
   earthGroup.add(earthMesh);
   earthGroup.position.set(15, 0, 0);
 
