@@ -69,7 +69,7 @@ function animate() {
   earthGroup.rotation.y += 0.01;
 
   // Animate Earth orbiting around the Sun
-  orbitAngle += 0.005;
+  orbitAngle += 0.003;
   earthGroup.position.x = Math.cos(orbitAngle) * orbitRadius;
   earthGroup.position.z = Math.sin(orbitAngle) * orbitRadius;
 

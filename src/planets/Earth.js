@@ -53,7 +53,7 @@ export default function getEarth() {
 
   function animate() {
     requestAnimationFrame(animate);
-    orbitAngle += 0.035;
+    orbitAngle += 0.02;
     moonMesh.position.x = Math.cos(orbitAngle) * orbitRadius;
     moonMesh.position.z = Math.sin(orbitAngle) * orbitRadius;
   }
